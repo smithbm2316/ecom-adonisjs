@@ -8,6 +8,12 @@
   @vite(['resources/js/app.js'])
 </head>
 <body>
-  <h1> It Works! </h1>
+  <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+  <form action='/clicked' method='post'>
+    {{ csrfField() }}
+    <button hx-post="/clicked">
+      Click Me!
+    </button>
+  </form>
 </body>
 </html>
