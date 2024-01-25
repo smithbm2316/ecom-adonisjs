@@ -1,9 +1,9 @@
 {
-  "name": "ecom",
-  "version": "0.0.0",
+  "name": "ecom-adonisjs",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "start": "node bin/server.js",
     "build": "node ace build",
