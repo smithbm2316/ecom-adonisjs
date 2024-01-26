@@ -9,9 +9,9 @@
 </head>
 <body>
   <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
-  <form action='/clicked' method='post'>
+  <form action='/' method='post'>
     {{ csrfField() }}
-    <button hx-post="/clicked">
+    <button hx-post="/">
       Click Me!
     </button>
   </form>
