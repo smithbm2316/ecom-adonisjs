@@ -3,28 +3,31 @@ import { withAuthFinder } from "@adonisjs/auth";
 import hash from "@adonisjs/core/services/hash";
 import { compose } from "@adonisjs/core/helpers";
 import { BaseModel, column } from "@adonisjs/lucid/orm";
+import { WithStringID } from "#models/with_string_ids";
+
+export type UserRole = "ADMIN" | "CUSTOMER";
 
 const AuthFinder = withAuthFinder(() => hash.use("scrypt"), {
   uids: ["email"],
   passwordColumnName: "password",
 });
 
-export default class User extends compose(BaseModel, AuthFinder) {
-  @column({ isPrimary: true })
-  declare id: number;
-
+export default class User extends compose(BaseModel, WithStringID, AuthFinder) {
   @column()
-  declare fullName: string | null;
+  declare name: string;
 
   @column()
   declare email: string;
 
-  @column()
+  @column({ serializeAs: null })
   declare password: string;
+
+  @column()
+  declare role: UserRole;
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoUpdate: true })
   declare updatedAt: DateTime | null;
 }

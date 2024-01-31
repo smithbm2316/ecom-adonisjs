@@ -19,6 +19,10 @@ export default await Env.create(new URL("../", import.meta.url), {
   LOG_LEVEL: Env.schema.string(),
   CACHE_VIEWS: Env.schema.boolean(),
 
+  /* admin credentials */
+  ADMIN_EMAIL: Env.schema.string(),
+  ADMIN_PASSWORD: Env.schema.string(),
+
   /*
   |----------------------------------------------------------
   | Variables for configuring session package

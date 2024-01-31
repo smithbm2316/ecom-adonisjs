@@ -1,10 +1,17 @@
 import type { HttpContext } from "@adonisjs/core/http";
+import User from "#models/user";
 
 export default class UsersController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
+  async index({ request }: HttpContext) {
+    const page = request.input("page", 1);
+    const limit = 20;
+
+    let users = User.query().orderBy("id", "desc").paginate(page, limit);
+    return users;
+  }
 
   /**
    * Display form to create a new record
